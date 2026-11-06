@@ -1,0 +1,32 @@
+name: Deploy na websolutions.sk/samborska
+
+on:
+  push:
+    branches: [main]
+    paths: ["site/**", ".github/workflows/deploy.yml"]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Nahrať cez FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./site/
+          # Cesta na serveri, končí lomkou. Nastav ako Repository variable FTP_DIR,
+          # napr. "/web/samborska/" (Websupport) alebo "/public_html/samborska/".
+          server-dir: ${{ vars.FTP_DIR }}
+
+      - name: Kontrola
+        run: curl -fsS -o /dev/null -w "HTTP %{http_code}\n" https://websolutions.sk/samborska/

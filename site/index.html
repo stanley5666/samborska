@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Vila Šamborská, Kavečany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Archívny list nehnuteľnosti: fotka na úvod, prehľad čísel, galéria, rozpis miestností, pôvodný text */
+:root{
+  --bg:#f5f4f1; --surface:#ffffff; --ink:#1d1f1e; --ink-2:#5b5f5c; --line:#dfddd7;
+  --oak:#9a6a3a; --oak-soft:#f1e7dc; --stamp:#3d5a4c;
+  --display:"Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --body:"Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141615; --surface:#1c1f1d; --ink:#ebe9e4; --ink-2:#a3a7a2; --line:#2e322f;
+  --oak:#d29a62; --oak-soft:#2e241a; --stamp:#8fb5a2; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141615; --surface:#1c1f1d; --ink:#ebe9e4; --ink-2:#a3a7a2; --line:#2e322f;
+  --oak:#d29a62; --oak-soft:#2e241a; --stamp:#8fb5a2; color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--body)}
+img{max-width:100%;display:block}
+a{color:var(--oak)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.archive{background:var(--stamp);color:#fff;font:500 12px/1.4 var(--mono);letter-spacing:.04em}
+.archive .wrap{padding-block:8px;display:flex;flex-wrap:wrap;gap:4px 16px;justify-content:space-between}
+.archive a{color:#fff}
+
+.hero{padding-block:20px 8px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:8px}
+.hero-grid button{all:unset;cursor:zoom-in;position:relative;overflow:hidden;border-radius:10px;background:var(--line)}
+.hero-grid button:focus-visible{outline:3px solid var(--oak);outline-offset:2px}
+.hero-grid img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
+.hero-grid button:hover img{transform:scale(1.03)}
+.hero-grid{grid-template-rows:repeat(2,minmax(0,1fr))}
+.hero-grid .hero-main{aspect-ratio:3/2;grid-column:1;grid-row:1/3}
+.hero-grid .hero-side{grid-column:2;min-height:0}
+.hero-grid .hero-side img{position:absolute;inset:0}
+.allbtn{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.62);color:#fff;font:500 13px/1 var(--body);padding:9px 12px;border-radius:999px}
+@media (max-width:700px){.hero-grid{grid-template-columns:1fr;grid-template-rows:auto}.hero-grid .hero-side{display:none}.hero-grid .hero-main{grid-row:auto}}
+
+.head{display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:flex-end;padding-block:20px 8px}
+.eyebrow{font:500 12px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:0 0 6px}
+h1{font:700 clamp(26px,4.4vw,42px)/1.1 var(--display);margin:0;letter-spacing:-.015em;text-wrap:balance;max-width:22ch}
+.addr{margin:8px 0 0;color:var(--ink-2)}
+.price{text-align:right}
+.price strong{display:block;font:700 26px/1.1 var(--display)}
+.price span{font-size:13px;color:var(--ink-2)}
+@media (max-width:700px){.price{text-align:left}}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:16px 0 8px}
+.fact{padding:14px 12px 14px 0}
+.fact b{display:block;font:600 22px/1.15 var(--display);font-variant-numeric:tabular-nums}
+.fact b sup{font-size:.55em}
+.fact span{font-size:13px;color:var(--ink-2)}
+
+section{padding-block:28px}
+h2{font:700 22px/1.2 var(--display);margin:0 0 14px;letter-spacing:-.01em}
+.lead{font-size:18px;max-width:68ch;margin:0}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+@media (max-width:820px){.two{grid-template-columns:1fr}}
+
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:6px}
+.gallery button{all:unset;cursor:zoom-in;position:relative;aspect-ratio:3/2;overflow:hidden;border-radius:8px;background:var(--line)}
+.gallery button:focus-visible{outline:3px solid var(--oak);outline-offset:2px}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+.gallery button:hover img{transform:scale(1.04)}
+.gallery .n{position:absolute;left:8px;bottom:7px;font:500 11px/1 var(--mono);background:rgba(0,0,0,.6);color:#fff;padding:4px 6px;border-radius:4px}
+@media (max-width:520px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.rooms{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.rooms th,.rooms td{text-align:left;padding:9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.rooms td:last-child,.rooms th:last-child{text-align:right;white-space:nowrap;font-family:var(--mono);font-size:14px}
+.rooms tr.floor th{font:600 13px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--oak);padding-top:18px}
+.rooms tr.sum td{font-weight:600;border-bottom:2px solid var(--ink)}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
+.chips li{background:var(--oak-soft);color:var(--ink);border-radius:999px;padding:6px 12px;font-size:14px}
+.prep li{background:transparent;border:1px dashed var(--oak)}
+
+.agent{display:flex;gap:16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.agent .ini{flex:0 0 52px;height:52px;border-radius:50%;background:var(--oak-soft);color:var(--oak);display:grid;place-items:center;font:700 18px var(--display)}
+.agent p{margin:0}
+.agent small{color:var(--ink-2)}
+
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px 18px}
+summary{cursor:pointer;font-weight:600;padding:12px 0}
+details p{max-width:72ch;color:var(--ink)}
+
+footer{border-top:1px solid var(--line);padding-block:20px 40px;color:var(--ink-2);font-size:13px}
+footer dl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:4px 16px;margin:0}
+footer dt{font-family:var(--mono)}
+footer dd{margin:0;overflow-wrap:anywhere}
+
+/* Prehliadač */
+#lb{position:fixed;inset:0;z-index:100;background:#000;color:#fff;touch-action:none;user-select:none;-webkit-user-select:none}
+#lb[hidden]{display:none!important}
+#lb .stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#lb .stage img{width:100vw;height:100vh;height:100dvh;object-fit:contain;transition:transform .22s ease,opacity .15s;will-change:transform}
+#lb .top,#lb .bottom{position:absolute;left:0;right:0;transition:opacity .25s;pointer-events:none}
+#lb .top{top:0;display:flex;align-items:center;gap:12px;padding:calc(env(safe-area-inset-top,0px) + 8px) max(10px,env(safe-area-inset-right,0px)) 18px max(14px,env(safe-area-inset-left,0px));background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,0))}
+#lb .top *{pointer-events:auto}
+#lb .cap{flex:1;min-width:0;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#lb .cnt{font:500 13px var(--mono);opacity:.85}
+#lb .bottom{bottom:0;padding:18px max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 10px) max(10px,env(safe-area-inset-left,0px));background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.6))}
+#lb .strip{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;pointer-events:auto}
+#lb .strip::-webkit-scrollbar{display:none}
+#lb .strip button{all:unset;cursor:pointer;flex:0 0 72px;height:48px;border-radius:4px;overflow:hidden;opacity:.5;box-shadow:inset 0 0 0 2px transparent}
+#lb .strip button.on{opacity:1;box-shadow:0 0 0 2px #fff}
+#lb .strip img{width:100%;height:100%;object-fit:cover}
+#lb .ib{all:unset;cursor:pointer;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;font-size:22px;line-height:1;color:#fff;background:rgba(0,0,0,.35)}
+#lb .ib:hover{background:rgba(255,255,255,.18)}
+#lb .ib:focus-visible{outline:2px solid #fff}
+#lb .nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;font-size:30px;transition:opacity .25s}
+#lb .prev{left:max(10px,env(safe-area-inset-left,0px))}
+#lb .next{right:max(10px,env(safe-area-inset-right,0px))}
+#lb.idle .top,#lb.idle .bottom,#lb.idle .nav{opacity:0}
+#lb.idle .top *,#lb.idle .strip,#lb.idle .nav{pointer-events:none}
+@media (hover:none){#lb .nav{display:none}}
+@media (orientation:landscape) and (max-height:520px){#lb .bottom{display:none}#lb .top{padding-top:6px;padding-bottom:10px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="archive"><div class="wrap"><span>ARCHÍV INZERÁTU · uložené 6. 11. 2026</span><a href="https://www.nehnutelnosti.sk/detail/JuugnVJWpF5/na-predaj-exkluzivna-5-izbova-rodinna-vila-kosice-kavecany" rel="noopener">pôvodný inzerát ↗</a></div></div>
+
+<header class="wrap hero">
+  <div class="hero-grid">
+    <button class="hero-main" data-i="13" aria-label="Otvoriť fotku 14"><img src="foto/14.webp" alt="Vila zo záhrady pri západe slnka"><span class="allbtn">Všetkých 29 fotiek</span></button>
+    <button class="hero-side" data-i="0" aria-label="Otvoriť fotku 1"><img src="nahlad/01.webp" alt="Denná zóna s krbom"></button>
+    <button class="hero-side" data-i="21" aria-label="Otvoriť fotku 22"><img src="nahlad/22.webp" alt="Výhľad na Košice z terasy"></button>
+  </div>
+  <div class="head">
+    <div>
+      <p class="eyebrow">Rodinný dom · novostavba · 5 izieb</p>
+      <h1>Exkluzívna 5-izbová vila na Šamborskej</h1>
+      <p class="addr">Šamborská ulica, Košice-Kavečany, okres Košice I</p>
+    </div>
+    <div class="price"><strong>Cena dohodou</strong><span>GoHome.sk uvádzal 689 000 €</span></div>
+  </div>
+  <div class="facts">
+    <div class="fact"><b>244 m<sup>2</sup></b><span>úžitková plocha</span></div>
+    <div class="fact"><b>180,40 m<sup>2</sup></b><span>obytný interiér</span></div>
+    <div class="fact"><b>848 m<sup>2</sup></b><span>pozemok</span></div>
+    <div class="fact"><b>201 m<sup>2</sup></b><span>zastavaná plocha</span></div>
+    <div class="fact"><b>230 m<sup>2</sup></b><span>terasy spolu</span></div>
+    <div class="fact"><b>63 m<sup>2</sup></b><span>garáž</span></div>
+    <div class="fact"><b>4 + 3</b><span>spálne + kúpeľne</span></div>
+    <div class="fact"><b>JV</b><span>orientácia</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <p class="lead">Moderná dvojpodlažná vila s ustupujúcim druhým podlažím, veľkorysou garážou a tromi terasami. Stojí na pozemku s výmerou 848 m² v Kavečanoch, s výhľadom na Košice. Má tepelné čerpadlo, rekuperáciu, fotovoltiku a pripravené je napojenie na bazén, výťah aj saunu.</p>
+  </section>
+
+  <section id="fotky">
+    <h2>Fotogaléria</h2>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section class="two">
+    <div>
+      <h2>Dispozícia a výmery</h2>
+      <table class="rooms">
+        <tbody>
+          <tr class="floor"><th colspan="2">1. nadzemné podlažie</th></tr>
+          <tr><td>Vstup so šatníkom</td><td>17,90 m²</td></tr>
+          <tr><td>Denná zóna – kuchyňa a obývacia časť</td><td>45,80 m²</td></tr>
+          <tr><td>Špajza</td><td>3,80 m²</td></tr>
+          <tr><td>Izba (spálňa, hosťovská alebo pracovňa)</td><td>18,10 m²</td></tr>
+          <tr><td>Kúpeľňa</td><td>7,80 m²</td></tr>
+          <tr><td>Technická miestnosť</td><td>4,20 m²</td></tr>
+          <tr><td>Chodba a schodisko</td><td>–</td></tr>
+          <tr class="sum"><td>Spolu 1. NP</td><td>110,10 m²</td></tr>
+          <tr class="floor"><th colspan="2">2. nadzemné podlažie (ustupujúce)</th></tr>
+          <tr><td>Izba</td><td>15,10 m²</td></tr>
+          <tr><td>Izba</td><td>18,40 m²</td></tr>
+          <tr><td>Izba</td><td>19,20 m²</td></tr>
+          <tr><td>Kúpeľňa</td><td>7,90 m²</td></tr>
+          <tr><td>Kúpeľňa</td><td>5,00 m²</td></tr>
+          <tr class="sum"><td>Spolu 2. NP</td><td>70,30 m²</td></tr>
+          <tr class="floor"><th colspan="2">Exteriér a príslušenstvo</th></tr>
+          <tr><td>Terasa pri dennej zóne, dlažba (1. NP)</td><td>60 m²</td></tr>
+          <tr><td>Pochôdzna vegetačná terasa nad garážou</td><td>70 m²</td></tr>
+          <tr><td>Terasa s WPC povrchom (2. NP)</td><td>100 m²</td></tr>
+          <tr><td>Garáž</td><td>63 m²</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h2>Technológie</h2>
+      <ul class="chips">
+        <li>Tepelné čerpadlo – kúrenie aj chladenie</li><li>Klimatizácie</li><li>Rekuperácia</li><li>Fotovoltika</li>
+        <li>Nabíjanie elektromobilu</li><li>Senzory kvality vzduchu</li><li>Krb s inteligentnou klapkou</li>
+        <li>Hliníkové okná</li><li>Zateplenie 200 mm grafitový polystyrén</li><li>Kamerový systém</li>
+        <li>Zabezpečovací systém</li><li>Automatické zavlažovanie záhrady</li><li>Vlastná úpravňa pitnej a úžitkovej vody</li>
+      </ul>
+      <h2 style="margin-top:28px">Pripravené do budúcna</h2>
+      <ul class="chips prep">
+        <li>Bazén</li><li>Výťah</li><li>Priestor pre saunu</li><li>Bioklimatická pergola na terase</li>
+      </ul>
+      <h2 style="margin-top:28px">Lokalita</h2>
+      <p style="margin:0">Kavečany sú mestská časť na severnom okraji Košíc. Je tu rodinná zástavba, les, turistické trasy a ZOO Košice. Do centra je to autom približne 10 minút, jazdí sem aj MHD. Najbližšia materská škola (Budanová) je asi 600 m od domu.</p>
+      <p style="margin:12px 0 0"><a href="https://www.google.com/maps/search/?api=1&query=%C5%A0amborsk%C3%A1%2C%20Ko%C5%A1ice-Kave%C4%8Dany" rel="noopener">Šamborská na mape ↗</a></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Maklér</h2>
+    <div class="agent">
+      <div class="ini" aria-hidden="true">MP</div>
+      <div>
+        <p><strong>Michal Palko</strong> · CEO, certifikovaný maklér NARKS</p>
+        <p>Reality s VAMI s.r.o., Dunajská 3, Košice</p>
+        <p><a href="tel:+421914700107">0914 700 107</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <details>
+      <summary>Pôvodný text inzerátu</summary>
+      <p><strong>Výnimočná rodinná vila, architektúra, technológie a súkromie – Šamborská, Košice – Kavečany</strong></p>
+      <p>Sú nehnuteľnosti, pri ktorých rozhoduje výmera. Pri iných lokalita. A potom existujú domy, pri ktorých je hodnotou celok – architektúra, priestor, technológie, súkromie a množstvo detailov, ktoré boli premyslené ešte skôr, než ich začnete vnímať. Michal Palko z Reality s VAMI vám exkluzívne predstavuje výnimočnú modernú rodinnú vilu v mestskej časti Košice–Kavečany, vytvorenú pre klienta, ktorý od svojho bývania očakáva viac než len reprezentatívny priestor.</p>
+      <p><strong>TECHNICKÉ INFORMÁCIE A PARAMETRE</strong><br>Vila je situovaná na Šamborskej ulici v Košiciach–Kavečanoch na pozemku s celkovou výmerou 848 m². Architektonicky je riešená ako dvojpodlažná stavba s ustupujúcim druhým nadzemným podlažím, veľkorysou garážou a rozsiahlymi terasami, ktoré prirodzene rozširujú obytnú časť domu smerom do exteriéru. Samotný interiér 1. NP ponúka 110,10 m², zatiaľ čo ustupujúce 2. NP disponuje ďalšími 70,30 m². Celková plocha obytného interiéru oboch podlaží tak predstavuje 180,40 m². Samostatnou súčasťou domu je nadštandardne veľká garáž s výmerou 63 m².</p>
+      <p>Dom pracuje s exteriérom vo veľkom formáte. Pri prvom nadzemnom podlaží sa nachádza 60 m² terasa s dlažbou a ďalšia 70 m² pochôdzna vegetačná terasa so zatrávnením, z druhého nadzemného podlažia je prístupná 100 m² terasa s WPC povrchom.</p>
+      <p>Technologická stránka domu zodpovedá jeho charakteru. O tepelný komfort sa stará tepelné čerpadlo zabezpečujúce vykurovanie aj chladenie, doplnené klimatizáciami a riadeným vetraním s rekuperáciou. Energetický koncept podporuje fotovoltický systém a pripravené je aj nabíjanie elektromobilu. V interiéri sa nachádzajú senzory monitorujúce kvalitu ovzdušia, pričom atmosféru hlavnej obytnej zóny dopĺňa krb s inteligentnou klapkou. Vila disponuje kvalitnými hliníkovými oknami a obvodový plášť je zateplený 200 mm grafitovým polystyrénom. Súčasťou vybavenia je kamerový a zabezpečovací systém, automatické zavlažovanie celej záhrady a vlastná úpravňa pitnej a úžitkovej vody.</p>
+      <p>Mimoriadne dôležité je, že pri návrhu domu sa nemyslelo iba na súčasnosť. Nehnuteľnosť disponuje prípravou na výťah, prípravou na bazén, samostatným priestorom určeným pre budúcu saunu a prípravou pre bioklimatickú pergolu na terase. Dom tak dokáže reagovať aj na budúce potreby svojho majiteľa bez nutnosti zásadných zásahov do jeho architektúry.</p>
+      <p><strong>DISPOZÍCIA</strong><br>Dispozičné riešenie rešpektuje veľkorysosť celej nehnuteľnosti a zároveň prirodzene oddeľuje spoločenskú a súkromnú časť domu.</p>
+      <p>1. NP disponuje 110,10 m². Už samotný vstup nastavuje charakter domu. Vstupná časť so šatníkom ponúka nadštandardných 17,90 m² a vytvára reprezentatívny, no zároveň praktický nástup do interiéru. Srdcom domu je veľkorysá 45,80 m² denná zóna, v ktorej sa prepája kuchyňa s obývacou časťou. Je to priestor vytvorený pre každodenný rodinný život, ale rovnako dobre dokáže fungovať pri väčších spoločenských stretnutiach. Jeho prirodzeným pokračovaním je exteriér a 60 m² terasa. Kuchynskú časť dopĺňa samostatná špajza s výmerou 3,80 m², vďaka ktorej môže hlavná kuchyňa zostať čistou a reprezentatívnou súčasťou denného priestoru. Na tomto podlaží sa ďalej nachádza 18,10 m² izba, ktorú je možné využívať ako plnohodnotnú spálňu, hosťovskú izbu alebo pracovňu. Komfort podlažia dopĺňa kúpeľňa s výmerou 7,80 m², technická miestnosť s výmerou 4,20 m², chodba a schodiskový priestor. Prvé podlažie tak dokáže v prípade potreby fungovať ako plnohodnotná obytná úroveň domu aj bez každodenného využívania horného podlažia.</p>
+      <p>2. NP disponuje 70,30 m². Druhé, ustupujúce nadzemné podlažie vytvára predovšetkým súkromnú nočnú zónu domu. Nachádzajú sa tu tri samostatné izby s výmerami 15,10 m², 18,40 m² a 19,20 m². Každá z nich ponúka dostatok priestoru na vytvorenie komfortnej spálne, detskej izby, pracovne alebo súkromného priestoru podľa individuálnych potrieb budúcej rodiny. Veľkým benefitom tejto časti domu sú dve samostatné kúpeľne s výmerami 7,90 m² a 5 m², vďaka čomu poskytuje horné podlažie vysoký komfort aj pre početnejšiu domácnosť.</p>
+      <p>A potom prichádza jeden z priestorov, ktorý tejto vile dodáva úplne inú dimenziu. Z druhého podlažia je prístupná 100 m² veľká terasa s WPC povrchom. Svojou výmerou už nepredstavuje iba doplnok interiéru, ale samostatnú exteriérovú pobytovú zónu s množstvom možností využitia.</p>
+      <p>Ďalšiu obytnú úroveň domu predstavuje samotný exteriér. Pri tejto vile sa exteriér nezačína za dverami domu. Je prirodzenou súčasťou jeho architektúry. Veľkorysá 60 m² terasa pri prvom nadzemnom podlaží vytvára priestor pre letné stolovanie, oddych, rodinné stretnutia či večery s priateľmi. Práve tu je zároveň pripravené technické riešenie pre budúcu bioklimatickú pergolu. Na druhom podlaží ju dopĺňa 100 m² WPC terasa, ktorá ponúka ďalšiu veľkorysú a súkromnejšiu exteriérovú zónu. Treťou úrovňou je 70 m² pochôdzna vegetačná terasa nad garážou, riešená zatrávnením. Spolu tak dom ponúka 230 m² terás a exteriérových pobytových plôch. Záhrada disponuje automatickým zavlažovacím systémom a pripravené je aj technické riešenie pre budúci bazén. Výsledkom je nehnuteľnosť, pri ktorej záhrada a terasy nie sú iba kulisou domu. Sú miestom, kde sa má skutočne žiť.</p>
+      <p><strong>TECHNOLÓGIE, KTORÉ NEVIDÍTE. KOMFORT, KTORÝ CÍTITE.</strong><br>Skutočná technologická úroveň moderného domu sa nemeria počtom ovládačov na stene. Spoznáte ju podľa toho, koľko vecí dom vyrieši za vás. Táto vila preto spája viacero technologických riešení do jedného premysleného celku: tepelné čerpadlo zabezpečujúce vykurovanie a chladenie, klimatizácie, riadené vetranie s rekuperáciou, fotovoltický systém, nabíjanie elektromobilu, senzory monitorovania kvality ovzdušia v interiéri, krb s inteligentnou klapkou, kamerový systém, zabezpečovací systém, automatické zavlažovanie celej záhrady, vlastná úpravňa pitnej a úžitkovej vody, hliníkové okná, zateplenie 200 mm grafitovým polystyrénom, príprava na výťah, príprava na bazén, samostatný priestor pripravený pre saunu, príprava pre bioklimatickú pergolu. Technológie tu nie sú samoúčelnou demonštráciou vybavenia. Ich úlohou je vytvoriť dom, ktorý je komfortný, efektívny, bezpečný a pripravený na ďalšie roky.</p>
+      <p><strong>LOKALITA</strong><br>Šamborská ulica v Košiciach–Kavečanoch dáva charakteru tejto nehnuteľnosti zmysel. Kavečany ponúkajú špecifickú kombináciu života v rámci Košíc a bezprostredného kontaktu s prírodou. Rodinná zástavba, zeleň a rekreačný charakter tejto časti mesta vytvárajú prostredie vhodné pre klienta, ktorý hľadá väčšiu mieru pokoja a súkromia, no nechce sa vzdať dostupnosti mesta. Práve v takomto prostredí dokáže naplno fungovať koncept tejto vily – 848 m² pozemku, veľkorysé terasy, záhrada a otvorené exteriérové plochy tu nie sú kompromisom vtesnaným medzi okolitú zástavbu, ale prirodzenou súčasťou bývania. Kavečany sú zároveň známe svojim rekreačným zázemím, blízkosťou lesov, turistických možností a ZOO Košice. Lokalita tak vytvára priestor nielen na bývanie, ale aj na aktívny rodinný život a každodenný kontakt s prírodou. Po pracovnom dni sa tak nevraciate iba do reprezentatívneho domu. Vraciate sa do prostredia, ktoré vám umožní prepnúť z tempa mesta do súkromia vlastného domova.</p>
+      <p><strong>BENEFITY</strong><br>výnimočná moderná rodinná vila · Šamborská ulica, Košice–Kavečany · pozemok s výmerou 848 m² · 180,40 m² obytného interiéru na dvoch podlažiach · nadštandardná garáž s výmerou 63 m² · 4 samostatné spálne · reprezentatívna denná zóna s výmerou 45,80 m² · 3 kúpeľne · samostatná špajza · technická miestnosť · 230 m² terás a exteriérových pobytových plôch · 60 m² terasa pri hlavnej dennej zóne · 100 m² WPC terasa na 2. NP · 70 m² pochôdzna vegetačná terasa nad garážou · tepelné čerpadlo – vykurovanie aj chladenie · klimatizácie · rekuperácia · fotovoltika · nabíjanie elektromobilu · monitoring kvality vnútorného vzduchu · krb s inteligentnou klapkou · hliníkové okná · vlastná úpravňa pitnej a úžitkovej vody · kamerový a zabezpečovací systém · automatické zavlažovanie celej záhrady · príprava na bazén · príprava na výťah · priestor pre budúcu saunu · príprava na bioklimatickú pergolu · vysoká úroveň súkromia a komfortu · prírodné a rekreačné zázemie Kavečian · nehnuteľnosť pripravená reagovať aj na budúce požiadavky svojho majiteľa</p>
+      <p>Cena tejto nehnuteľnosti je na vyžiadanie v realitnej kancelárii Reality s VAMI. Táto vila nepotrebuje presviedčať jedným efektným detailom. Jej hodnota vzniká v momente, keď začnete vnímať, ako všetky jej súčasti fungujú spolu. Nehnuteľnosť vám radi predstavíme osobne formou individuálnej súkromnej obhliadky. Michal Palko – CEO Reality s VAMI, certifikovaný realitný maklér NARKS, 0914 700 107</p>
+    </details>
+  </section>
+</main>
+
+<footer class="wrap">
+  <dl>
+    <dt>Číslo inzerátu</dt><dd>JuugnVJWpF5 (nehnutelnosti.sk)</dd>
+    <dt>Zverejnený</dt><dd>24. 10. 2026, aktualizovaný 31. 10. 2026</dd>
+    <dt>Archivované</dt><dd>6. 11. 2026 – inzerát bol v tom čase aktívny</dd>
+    <dt>Zdroj</dt><dd><a href="https://www.nehnutelnosti.sk/detail/JuugnVJWpF5/na-predaj-exkluzivna-5-izbova-rodinna-vila-kosice-kavecany" rel="noopener">nehnutelnosti.sk/detail/JuugnVJWpF5</a> · video v pôvodnom inzeráte</dd>
+    <dt>Fotografie</dt><dd>© Reality s VAMI s.r.o. – kópia len na interné archívne účely</dd>
+  </dl>
+</footer>
+
+<div id="lb" hidden role="dialog" aria-modal="true" aria-label="Prehliadač fotiek">
+  <div class="stage" id="stage"><img id="big" alt=""></div>
+  <div class="top">
+    <span class="cnt" id="cnt">1 / 29</span>
+    <span class="cap" id="cap"></span>
+    <button class="ib" id="fs" aria-label="Celá obrazovka" hidden>⛶</button>
+    <button class="ib" id="close" aria-label="Zavrieť">✕</button>
+  </div>
+  <button class="ib nav prev" id="prev" aria-label="Predchádzajúca fotka">‹</button>
+  <button class="ib nav next" id="next" aria-label="Ďalšia fotka">›</button>
+  <div class="bottom"><div class="strip" id="strip"></div></div>
+</div>
+
+<script>
+const CAP=["Denná zóna s krbom","Kuchyňa a obývacia časť","Spálňa","Spálňa","Detská izba","Detská izba","Detská izba s pracovným kútom","Izba na 2. NP","Chodba a schodisko","Chodba na 2. NP","Kúpeľňa so sprchou","Kúpeľňa s vaňou","Kúpeľňa","Vila zo záhrady","Záhrada","Záhrada a presklená denná zóna","Výhľad zo schodiska","Terasa s výhľadom","Terasa pri dennej zóne","Terasa pri dennej zóne","Terasa pri dennej zóne","Výhľad na Košice","WPC terasa na 2. NP","WPC terasa na 2. NP","Drevom obložená miestnosť","Vstup a vonkajšie schodisko","Vonkajšie schodisko","Garáž z ulice","Vjazd a garáž"];
+const N=CAP.length,pad=i=>String(i+1).padStart(2,"0"),full=i=>"foto/"+pad(i)+".webp",thumb=i=>"nahlad/"+pad(i)+".webp";
+const $=id=>document.getElementById(id);
+const lb=$("lb"),big=$("big"),strip=$("strip"),gallery=$("gallery");
+let cur=0,lastFocus=null,idleT=null;
+
+CAP.forEach((c,i)=>{
+  const b=document.createElement("button");b.dataset.i=i;b.setAttribute("aria-label","Fotka "+(i+1)+": "+c);
+  b.innerHTML='<img loading="lazy" alt=""><span class="n">'+(i+1)+'</span>';b.firstChild.src=thumb(i);b.firstChild.alt=c;gallery.appendChild(b);
+  const t=document.createElement("button");t.setAttribute("aria-label","Fotka "+(i+1));t.innerHTML='<img loading="lazy" alt="">';t.firstChild.src=thumb(i);t.onclick=e=>{e.stopPropagation();show(i)};strip.appendChild(t);
+});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-i]");if(b&&!lb.contains(b))open(+b.dataset.i)});
+
+function show(i,dir){
+  cur=(i+N)%N;big.style.transition="none";big.style.transform="";
+  big.src=full(cur);big.alt=CAP[cur];$("cnt").textContent=(cur+1)+" / "+N;$("cap").textContent=CAP[cur];
+  [...strip.children].forEach((c,k)=>c.classList.toggle("on",k===cur));
+  strip.children[cur].scrollIntoView({block:"nearest",inline:"center"});
+  [cur+1,cur-1].forEach(k=>{const im=new Image();im.src=full((k+N)%N)});
+  try{history.replaceState(null,"","#foto-"+(cur+1))}catch(e){}
+  wake();
+}
+function open(i){
+  lastFocus=document.activeElement;lb.hidden=false;document.documentElement.style.overflow="hidden";
+  try{history.pushState({lb:1},"","#foto-"+(i+1))}catch(e){}
+  show(i);$("close").focus({preventScroll:true});
+}
+function close(fromPop){
+  if(lb.hidden)return;lb.hidden=true;document.documentElement.style.overflow="";
+  if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});
+  if(!fromPop){try{history.state&&history.state.lb?history.back():history.replaceState(null,"",location.pathname)}catch(e){}}
+  if(lastFocus)lastFocus.focus({preventScroll:true});
+}
+window.addEventListener("popstate",()=>close(true));
+function wake(){lb.classList.remove("idle");clearTimeout(idleT);idleT=setTimeout(()=>lb.classList.add("idle"),2600)}
+lb.addEventListener("mousemove",wake);
+
+$("prev").onclick=e=>{e.stopPropagation();show(cur-1)};
+$("next").onclick=e=>{e.stopPropagation();show(cur+1)};
+$("close").onclick=e=>{e.stopPropagation();close()};
+if(lb.requestFullscreen){$("fs").hidden=false;$("fs").onclick=e=>{e.stopPropagation();document.fullscreenElement?document.exitFullscreen():lb.requestFullscreen().catch(()=>{})}}
+document.addEventListener("keydown",e=>{if(lb.hidden)return;if(e.key==="ArrowRight")show(cur+1);else if(e.key==="ArrowLeft")show(cur-1);else if(e.key==="Escape")close();});
+
+let sx=0,sy=0,dx=0,dy=0,touching=false,moved=false;
+const stage=$("stage");
+stage.addEventListener("touchstart",e=>{if(e.touches.length>1){touching=false;return}touching=true;moved=false;sx=e.touches[0].clientX;sy=e.touches[0].clientY;dx=dy=0;big.style.transition="none"},{passive:true});
+stage.addEventListener("touchmove",e=>{if(!touching)return;dx=e.touches[0].clientX-sx;dy=e.touches[0].clientY-sy;if(Math.abs(dx)>8||Math.abs(dy)>8)moved=true;
+  if(Math.abs(dx)>Math.abs(dy))big.style.transform="translateX("+dx+"px)";else if(dy>0)big.style.transform="translateY("+dy+"px) scale("+Math.max(.85,1-dy/1200)+")";},{passive:true});
+stage.addEventListener("touchend",()=>{if(!touching)return;touching=false;big.style.transition="";
+  if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy))show(cur+(dx<0?1:-1));
+  else if(dy>110&&dy>Math.abs(dx))close();
+  else{big.style.transform="";if(!moved)lb.classList.contains("idle")?wake():(lb.classList.add("idle"),clearTimeout(idleT))}});
+stage.addEventListener("click",e=>{if(e.pointerType==="mouse"||e.detail&&!("ontouchstart" in window)){if(e.target===stage)close();else wake()}});
+
+const m=location.hash.match(/^#foto-(\d+)$/);if(m){const k=+m[1]-1;if(k>=0&&k<N){try{history.replaceState(null,"",location.pathname)}catch(e){}open(k)}}
+</script>
+</body>
+</html>
