@@ -13,6 +13,7 @@ Nastavenie v GitHube (Settings → Secrets and variables → Actions):
 | Secret | `FTP_SERVER` | FTP server hostingu |
 | Secret | `FTP_USERNAME` | FTP používateľ |
 | Secret | `FTP_PASSWORD` | FTP heslo |
-| Variable | `FTP_DIR` | cieľový priečinok, napr. `/web/samborska/` |
+
+Cieľový priečinok na FTP: `www_root_websolutions_sk/samborska/` (nastavený priamo v workflow).
 
 Ak hosting nepodporuje FTPS, v `.github/workflows/deploy.yml` zmeň `protocol: ftps` na `ftp`.
