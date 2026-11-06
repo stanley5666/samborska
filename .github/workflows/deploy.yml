@@ -47,4 +47,7 @@ jobs:
           server-dir: ${{ vars.FTP_DIR }}
 
       - name: Kontrola
-        run: curl -fsS -o /dev/null -w "HTTP %{http_code}\n" https://websolutions.sk/samborska/
+        run: |
+          curl -fsSL -o page.html -w "HTTP %{http_code} -> %{url_effective}\n" https://websolutions.sk/samborska/
+          grep -q "Vila Šamborská" page.html && echo "OK: stránka sa načítala" || { echo "::error::Na adrese nie je stránka Vila Šamborská"; exit 1; }
+          curl -fsSL -o /dev/null -w "foto/01.webp: HTTP %{http_code}\n" https://websolutions.sk/samborska/foto/01.webp
