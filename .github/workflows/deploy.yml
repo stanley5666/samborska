@@ -29,8 +29,8 @@ jobs:
           [ "$HAS_PASS" = true ]   || { echo "::error::Chýba secret FTP_PASSWORD"; ok=0; }
           case "$FTP_DIR" in
             "") echo "::error::Chýba Repository variable FTP_DIR (napr. /web/samborska/)"; ok=0 ;;
-            */samborska/) echo "Cieľ: $FTP_DIR" ;;
-            *) echo "::error::FTP_DIR musí končiť na /samborska/ (je: $FTP_DIR)"; ok=0 ;;
+            samborska/|*/samborska/) echo "Cieľ: $FTP_DIR" ;;
+            *) echo "::error::FTP_DIR musí byť samborska/ alebo končiť na /samborska/ (je: $FTP_DIR)"; ok=0 ;;
           esac
           [ $ok = 1 ]
 
