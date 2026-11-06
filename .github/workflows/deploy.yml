@@ -16,6 +16,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Kontrola nastavenia
+        env:
+          FTP_DIR: ${{ vars.FTP_DIR }}
+          HAS_SERVER: ${{ secrets.FTP_SERVER != '' }}
+          HAS_USER: ${{ secrets.FTP_USERNAME != '' }}
+          HAS_PASS: ${{ secrets.FTP_PASSWORD != '' }}
+        run: |
+          ok=1
+          [ "$HAS_SERVER" = true ] || { echo "::error::Chýba secret FTP_SERVER"; ok=0; }
+          [ "$HAS_USER" = true ]   || { echo "::error::Chýba secret FTP_USERNAME"; ok=0; }
+          [ "$HAS_PASS" = true ]   || { echo "::error::Chýba secret FTP_PASSWORD"; ok=0; }
+          case "$FTP_DIR" in
+            "") echo "::error::Chýba Repository variable FTP_DIR (napr. /web/samborska/)"; ok=0 ;;
+            */samborska/) echo "Cieľ: $FTP_DIR" ;;
+            *) echo "::error::FTP_DIR musí končiť na /samborska/ (je: $FTP_DIR)"; ok=0 ;;
+          esac
+          [ $ok = 1 ]
+
       - name: Nahrať cez FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
